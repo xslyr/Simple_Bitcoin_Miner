@@ -2,7 +2,6 @@
 #encoding: utf-8
 
 import sys
-import time
 from hashlib import sha256
 
 def apply_sha256(text):
