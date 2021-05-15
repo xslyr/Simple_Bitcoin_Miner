@@ -2,6 +2,7 @@
 #encoding: utf-8
 
 import sys
+import time
 from hashlib import sha256
 
 def apply_sha256(text):
@@ -17,7 +18,6 @@ def hash_researcher(block_number, transactions, last_hash, number_zeros):
 			print('\tnonce: {}'.format(str(nonce)))
 			print('\thash: {}\n'.format(hash_gen))
 			return nonce,hash_gen
-		print('Nonce tested: {}'.format(nonce))
 		nonce += 1
 		
 if __name__ == '__main__':
@@ -25,12 +25,13 @@ if __name__ == '__main__':
 		if sys.argv[0] == '-h' or sys.argv[0] == '-help':
 			raise Exception	
 		
+		init = time.perf_counter()
 		block_number = sys.argv[1]
 		transactions = sys.argv[2]
 		last_hash = sys.argv[3]
 		number_zeros = sys.argv[4]
 		hash_researcher(block_number,transactions,last_hash,number_zeros)
-		
+		print('Task execution time: {} seconds\n'.format(time.perf_counter() - init))
 	except Exception as e:
 		print(e)
 		filename = sys.argv[0]
